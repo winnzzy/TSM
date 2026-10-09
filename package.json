@@ -1,0 +1,32 @@
+{
+  "description": "Transport Coordination CRM (MVP) — call-centre campaign staff transport manifests",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "name": "transport-crm",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:shared": "pnpm --filter @transport-crm/shared build",
+    "db:ensure": "pnpm --filter @transport-crm/api db:ensure",
+    "db:migrate": "pnpm --filter @transport-crm/api db:migrate",
+    "db:seed": "pnpm --filter @transport-crm/api db:seed",
+    "db:setup": "pnpm --filter @transport-crm/api db:setup",
+    "dev": "pnpm build:shared && pnpm db:ensure && concurrently -k -n api,web \"pnpm --filter @transport-crm/api dev\" \"pnpm --filter @transport-crm/web dev\"",
+    "dev:api": "pnpm build:shared && pnpm db:ensure && pnpm --filter @transport-crm/api dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "version": "0.1.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "embedded-postgres",
+      "@embedded-postgres/linux-x64"
+    ]
+  }
+}

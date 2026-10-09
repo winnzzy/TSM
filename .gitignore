@@ -1,0 +1,11 @@
+node_modules/
+.pgdata/
+apps/api/dev-outbox/
+apps/api/prisma/migrations/**/migration.sql.lock
+dist/
+.next/
+out/
+*.tsbuildinfo
+.env
+.env.local
+coverage/
